@@ -116,20 +116,7 @@ private[mllib] class FeatureIndex extends Serializable {
       i += 1
     }
     i = 0
-    while (i < y.size) {
-      while (j < y.size) {
-        if (y(i) == y(j)) {
-          y.remove(j)
-        }
-        while (j < y.size && y(i) == y(j)) {
-          y.remove(j)
-        }
-        j += 1
-      }
-      i += 1
-      j = i + 1
-    }
-    y = y.sortWith(_ < _)
+    y = y.distinct.sortWith(_ < _) 
     xsize = max - 1
     this
   }
